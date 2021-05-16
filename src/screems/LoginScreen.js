@@ -4,6 +4,7 @@ import Button from '../components/Button'
 import Input from '../components/Input'
 import { colors } from '../config/styles'
 import { logCompany } from '../functions/log'
+import { getTranslate } from '../functions/translation'
 
 export default function LoginScreen({navigation}) {
     const [focusEmail, setFocusEmail] = useState(false)
@@ -28,24 +29,27 @@ export default function LoginScreen({navigation}) {
     return (
         <View>
             <View style={styles.headerContainer}>
-                <Text style={styles.headerTextWelcome}>Welcome,</Text>
-                <Text style={styles.headerTextSignUp}>Sign Up</Text>
+                <Text style={styles.headerTextWelcome}>{getTranslate('welcome')},</Text>
+                <Text 
+                    style={styles.headerTextSignUp}
+                    onPress={() =>{navigation.navigate("Register")}}
+                >{getTranslate('signup')}</Text>
             </View>
-            <Text style={styles.textContinue}>Sign in to Continue</Text>
+            <Text style={styles.textContinue}>{getTranslate('sign_in_to_ontinue')}</Text>
             <View style={styles.container}>
-                <Input placeholder="Email" type="email" onFocus={handlerFocus} style={focusEmail && styles.focusStyle} onChangeText={text => setEmail(text)} />
-                <Input placeholder="Password" secureTextEntry={true} onFocus={handlerFocusPassword} onChangeText={text => setPassword(text)}  style={[styles.inputPassword, focusPassword && styles.focusStyle]}/>
+                <Input placeholder={getTranslate('email')} type="email" onFocus={handlerFocus} style={focusEmail && styles.focusStyle} onChangeText={text => setEmail(text)} />
+                <Input placeholder={getTranslate('password')} secureTextEntry={true} onFocus={handlerFocusPassword} onChangeText={text => setPassword(text)}  style={[styles.inputPassword, focusPassword && styles.focusStyle]}/>
                 <View style={styles.forgotPasswordContainer}>
+                    {/* <TouchableOpacity>
+                        <Text style={styles.textRegister} onPress={() =>{navigation.navigate("Register")}}>{getTranslate('register')}</Text>
+                    </TouchableOpacity> */}
                     <TouchableOpacity>
-                        <Text style={styles.textRegister} onPress={() =>{navigation.navigate("Register")}}>Register</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Text style={styles.forgotPasswordText}>Forgot Password ?</Text>
+                        <Text style={styles.forgotPasswordText}>{getTranslate('forgot_password')} ?</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.buttonContainer}>
                     <Button onPress={() => logCompany('Iniciar sesión.', 'Email: ',email, ' Password: ', password)}>
-                        <Text style={styles.textButton}>SIGN IN</Text>
+                        <Text style={styles.textButton}>{getTranslate("signin")}</Text>
                     </Button>
                 </View>
             </View>
@@ -67,7 +71,7 @@ const styles = StyleSheet.create({
     forgotPasswordContainer:{
         width:'100%',
         flexDirection:'row',
-        justifyContent:'space-between',
+        justifyContent:'flex-end',
         marginTop:10,
     },
     forgotPasswordText:{
@@ -101,11 +105,12 @@ const styles = StyleSheet.create({
     textContinue:{
         color:'#929292',
         fontSize:14,
-        margin:15
+        margin:15,
+        marginTop:0
     },
     
     headerTextSignUp:{
         color:colors.primaryColor,
-        fontSize:30
+        fontSize:18
     },
 })
