@@ -6,5 +6,6 @@ export  const borderRadiusCostom =  {
 }
 
 export const colors = {
-        primaryColor: '#00C569'
+        primaryColor: '#00C569',
+        colorError:'red'
 }

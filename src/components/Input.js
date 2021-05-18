@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         // ...borderRadiusCostom,
         borderColor:'white',
         borderBottomColor:"#BDC4CC",
-        borderWidth: 1,
+        borderWidth: .5,
         fontSize:20,
         color:"black"
     }
